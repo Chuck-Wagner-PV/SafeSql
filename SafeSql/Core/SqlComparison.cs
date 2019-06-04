@@ -3,8 +3,8 @@
     /// <summary> Generates the appropriate SQL operator for a string value.</summary>
     public class SqlComparison
     {
-        public static SqlComparison Equal = new SqlComparison(SqlOperator.Equal, SqlOperator.Is);
-        public static SqlComparison NotEqual = new SqlComparison(SqlOperator.NotEqual, SqlOperator.IsNot);
+        public static readonly SqlComparison Equal = new SqlComparison(SqlOperator.Equal, SqlOperator.Is);
+        public static readonly SqlComparison NotEqual = new SqlComparison(SqlOperator.NotEqual, SqlOperator.IsNot);
 
         private readonly SqlFragment _valueOperator;
         private readonly SqlFragment _nullOperator;

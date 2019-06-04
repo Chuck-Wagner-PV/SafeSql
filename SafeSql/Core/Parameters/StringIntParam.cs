@@ -11,6 +11,6 @@
         {
             return $"'{value}'";
         }
-        public object ParameterValue => Value;
+
     }
 }
