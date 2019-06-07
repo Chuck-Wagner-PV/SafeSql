@@ -30,7 +30,7 @@ namespace SafeSql.Tests
 
         [Theory]
         [InlineData("123")]
-        public void RequireCompileTimeConstant(string customerId)
+        public void PhraseMustBeACompileTimeConstant(string customerId)
         {
             Assert.Throws<ArgumentException>(() => new SqlPhrase("Select top 1 from customers where customerid = " + customerId));
         }
