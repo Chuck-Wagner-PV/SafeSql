@@ -25,14 +25,17 @@ namespace SafeSql.Tests
 
         public void SqlInjectionCaught(string s)
         {
-            Assert.Throws<SqlInjectionException>(() => new SqlPhrase(s));
+            Assert.Throws<SqlInjectionException>(() => (SqlPhrase)s);
         }
 
         [Theory]
         [InlineData("123")]
         public void PhraseMustBeACompileTimeConstant(string customerId)
         {
-            Assert.Throws<ArgumentException>(() => new SqlPhrase("Select top 1 from customers where customerid = " + customerId));
+            Assert.Throws<ArgumentException>(() =>
+            {
+                return new SqlPhrase("Select top 1 from customers where customerid = " + customerId);
+            });
         }
     }
 }

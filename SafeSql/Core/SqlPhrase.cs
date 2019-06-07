@@ -55,5 +55,10 @@ namespace SafeSql.Core
         {
             return !InvalidPattern.IsMatch(sqlPhrase) && SqlPhrasePattern.IsMatch(sqlPhrase);
         }
+
+        public static explicit operator SqlPhrase(string sqlPhrase)
+        {
+            return new SqlPhrase(sqlPhrase);
+        }
     }
 }
