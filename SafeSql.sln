@@ -28,7 +28,4 @@ Global
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {978A2D15-9E0A-4850-919F-72E72211A982}
 	EndGlobalSection
-	GlobalSection(NDepend) = preSolution
-		Project = ".\SafeSql.ndproj"
-	EndGlobalSection
 EndGlobal

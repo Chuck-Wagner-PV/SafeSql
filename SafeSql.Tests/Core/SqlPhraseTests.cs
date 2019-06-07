@@ -9,14 +9,10 @@ namespace SafeSql.Tests
 {
     public class SqlPhraseTests
     {
-        [Theory]
-        [InlineData("SELECT TOP 100 FIRSTNAME, [LASTNAME] FROM [USERS] ORDER BY LASTNAME")]
-
-        // ensure that column names with T-SQL brackets work
-        [InlineData(" ORDER BY [LASTNAME]")]
-        public void ValidSql(string s)
+        [Fact]
+        public void ValidSelect()
         {
-            var t = new SqlPhrase(s);
+            var t = new SqlPhrase("SELECT TOP 100 FIRSTNAME, [LASTNAME] FROM [USERS] ORDER BY LASTNAME");
         }
 
         [Theory]
@@ -32,5 +28,11 @@ namespace SafeSql.Tests
             Assert.Throws<SqlInjectionException>(() => new SqlPhrase(s));
         }
 
+        [Theory]
+        [InlineData("123")]
+        public void RequireCompileTimeConstant(string customerId)
+        {
+            Assert.Throws<ArgumentException>(() => new SqlPhrase("Select top 1 from customers where customerid = " + customerId));
+        }
     }
 }

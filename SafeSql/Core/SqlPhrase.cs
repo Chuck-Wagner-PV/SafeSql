@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 
 namespace SafeSql.Core
 {
@@ -43,6 +44,11 @@ namespace SafeSql.Core
         /// <param name="value"> The hardcoded SQL phrase. </param>
         public SqlPhrase(string value) : base(value)
         {
+            if (string.IsInterned(value) == null)
+            {
+                throw new ArgumentException("SQL phrases must be compile time constants");
+            }
+
         }
 
         public override bool IsValid(string sqlPhrase)
